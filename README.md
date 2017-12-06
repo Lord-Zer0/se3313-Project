@@ -1,6 +1,6 @@
 # se3313-Project: ScavENGer Hunt
 
-Group Info:
+Group Info: <br />
 Trent Chappus - 250845587 <br />
 Ashley Ottogalli - 250845708 <br />
 Connor McCauley - 250865901 <br />
