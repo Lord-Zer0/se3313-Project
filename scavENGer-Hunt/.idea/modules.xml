@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/scavENGer-Hunt.iml" filepath="$PROJECT_DIR$/scavENGer-Hunt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/scavENGer-Hunt-app.iml" filepath="$PROJECT_DIR$/app/scavENGer-Hunt-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/se3313-Project-scavENGer-Hunt.iml" filepath="$PROJECT_DIR$/se3313-Project-scavENGer-Hunt.iml" />
     </modules>
   </component>
 </project>
