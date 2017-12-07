@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\1346ef7a8111978f5411ff1ece7a4986c13f57bd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_9dc0328881f5d85a1b2e5d023461faeccdf1f0c2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\68f1865cc2f044bf47612a10f4ae012430d111d5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_bc9db18cb50ef5ca267ccba36d38e7199c7e1693.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidStudioSDK\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-26.0.0-alpha1_d9b50af1cb5c1192c12638295364034cffc0b994.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\4bdfc9600ed6d046217dd8bea6978ccb65cc64c8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_ff12379509555b679f219f51f2d749106d2a4821.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\01cb77f34f6af03b09e90a4f9bb8949405ef152b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_3f43f1f9d6858df222bbdfb4e66dc039a390bb22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="D:\AndroidStudioSDK\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_10b2267cb4d0eb7f0ffad9ea7608429653c10247.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\1efde206b2a43e02e12869169bbc274afcc5f32f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_d56a5d2e06efdfb97b28dffc592b4eeb4767b2f3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\6ee2eee13b5e173efd6988ab04915dec871d5e25\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_d26f9c86a674d24097925d4f759bc1678224fc5d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\9267a8288e21e0e7cc67b3e640fa081b0ff56be9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_9e1cfa3ef323c57f29cc4e589235c04228037620.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\9a446bbeb8f9cad30e209534d6f164f95ad0410b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_f2b0eaeb50b0aa9cf0c8d164bd58f7865ced347d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\5938d76d025c2d4c7ffe47d3c50b42ca387d71ae\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_f50a7ee9a97cc56d73bae4ee90218dfdb9c6e4f5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Android\.android\build-cache\ea8e931411c55912061437be11698db365f49557\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="D:\OperatingSystemCourse\mprice33_se3313_lab02\ContextSwitchAndroid\app\build\intermediates\pre-dexed\debug\classes_f4953b4c92f42caa5650d466fdccaef434f9f7e3.jar" />
+    </item>
+
+</items>
