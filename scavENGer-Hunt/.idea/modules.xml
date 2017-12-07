@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\notrachel332\Documents\Engineering\Year-4\SE3313\se3313-Project\scavENGer-Hunt\app\app.iml" filepath="C:\Users\notrachel332\Documents\Engineering\Year-4\SE3313\se3313-Project\scavENGer-Hunt\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/scavENGer-Hunt.iml" filepath="$PROJECT_DIR$/scavENGer-Hunt.iml" />
+      <module fileurl="file://C:\Users\notrachel332\Documents\Engineering\Year-4\SE3313\se3313-Project\scavENGer-Hunt\scavENGer-Hunt.iml" filepath="C:\Users\notrachel332\Documents\Engineering\Year-4\SE3313\se3313-Project\scavENGer-Hunt\scavENGer-Hunt.iml" />
     </modules>
   </component>
 </project>
