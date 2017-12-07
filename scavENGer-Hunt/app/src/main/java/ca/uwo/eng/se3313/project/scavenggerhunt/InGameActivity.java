@@ -46,39 +46,39 @@ public class InGameActivity extends AppCompatActivity {
         wordView = findViewById(R.id.wordText);
         btnCamera = findViewById(R.id.btnCamera);
         mImageView = findViewById(R.id.mImageView);
+      //  btnCamera.setOnClickListener(onClickListener);
     }
+//    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        public void btnCameraClick(View view) {
+            if (checkSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void btnCameraClick(View view) {
-        if (checkSelfPermission(Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            requestPermissions(new String[]{Manifest.permission.CAMERA},
-                    REQUEST_IMAGE_CAPTURE);
-        }
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-                System.out.println(ex.getLocalizedMessage());
+                requestPermissions(new String[]{Manifest.permission.CAMERA},
+                        REQUEST_IMAGE_CAPTURE);
             }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
-                        photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            // Ensure that there's a camera activity to handle the intent
+            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                // Create the File where the photo should go
+                File photoFile = null;
+                try {
+                    photoFile = createImageFile();
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                    System.out.println(ex.getLocalizedMessage());
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(this,
+                            "com.example.android.fileprovider",
+                            photoFile);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
             }
         }
-    }
-
+  //  };
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
