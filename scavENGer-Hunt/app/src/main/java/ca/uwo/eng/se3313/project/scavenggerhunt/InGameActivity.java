@@ -56,6 +56,7 @@ public class InGameActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.CAMERA},
                     REQUEST_IMAGE_CAPTURE);
         }
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
