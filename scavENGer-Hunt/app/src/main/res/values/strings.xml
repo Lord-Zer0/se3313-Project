@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">scavENGger Hunt</string>
+    <string name="app_name">scavENGger Hunt</string>,
+    <string name="api_key">0d1c6b7800efff5a855e45c0638cfaa778d186ca</string>
+
+
 </resources>
