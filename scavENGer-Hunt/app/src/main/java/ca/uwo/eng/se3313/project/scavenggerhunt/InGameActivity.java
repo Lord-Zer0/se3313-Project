@@ -1,6 +1,7 @@
 package ca.uwo.eng.se3313.project.scavenggerhunt;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -28,13 +29,22 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImages;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOptions;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class InGameActivity extends AppCompatActivity {
 
@@ -50,6 +60,10 @@ public class InGameActivity extends AppCompatActivity {
 
     VisualRecognition watty;
 
+    OkHttpClient httpClient;
+
+    String url;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +77,46 @@ public class InGameActivity extends AppCompatActivity {
                 VisualRecognition.VERSION_DATE_2016_05_20
         );
         watty.setApiKey("0d1c6b7800efff5a855e45c0638cfaa778d186ca");
+        url = "http://54.167.215.132:2010";
+
+        RequestTask requestTask = new RequestTask();
+
+        requestTask.execute("yaaasssss");
     }
-//    private View.OnClickListener onClickListener = new View.OnClickListener() {
+
+    class RequestTask extends AsyncTask<String, Void, String> {
+
+        private Exception exception;
+
+        protected String doInBackground(String...urls) {
+            try {
+                Socket echoSocket = new Socket("54.167.215.132", 2010);
+
+                PrintWriter out =
+                        new PrintWriter(echoSocket.getOutputStream(), true);
+
+                BufferedReader in =
+                        new BufferedReader(
+                                new InputStreamReader(echoSocket.getInputStream()));
+
+                out.println("GET /game/123456 ");
+
+                // Consume the initial welcoming messages from the server
+                return in.readLine();
+
+            } catch (Exception e) {
+                this.exception = e;
+                System.out.println(this.exception);
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String result) {
+            System.out.println(result);
+
+        }
+    }
+
         @RequiresApi(api = Build.VERSION_CODES.M)
         public void btnCameraClick(View view) {
             if (checkSelfPermission(Manifest.permission.CAMERA)
@@ -143,7 +195,7 @@ public class InGameActivity extends AppCompatActivity {
                 bmOptions.inJustDecodeBounds = true;
 
                 // Determine how much to scale down the image
-                int scaleFactor = 2;
+                int scaleFactor = 10;
 
                 // Decode the image file into a Bitmap sized to fill the View
                 bmOptions.inJustDecodeBounds = false;
