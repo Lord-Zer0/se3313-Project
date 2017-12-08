@@ -3,6 +3,7 @@ package ca.uwo.eng.se3313.project.scavenggerhunt;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +22,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,10 +46,15 @@ public class InGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ingame_view);
+        System.out.println("Sup");
 
         wordView = findViewById(R.id.wordText);
         btnCamera = findViewById(R.id.btnCamera);
         mImageView = findViewById(R.id.mImageView);
+        //VisualRecognition service = new VisualRecognition(
+         //       VisualRecognition.VERSION_DATE_2016_05_20
+       // );
+        //service.setApiKey("{api-key}");
       //  btnCamera.setOnClickListener(onClickListener);
     }
 //    private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -73,6 +82,15 @@ public class InGameActivity extends AppCompatActivity {
                     Uri photoURI = FileProvider.getUriForFile(this,
                             "com.example.android.fileprovider",
                             photoFile);
+                    System.out.println(getContentResolver().getType(photoURI));
+                    Cursor returnCursor =
+                            getContentResolver().query(photoURI, null, null, null, null);
+                    int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                    int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+                    returnCursor.moveToFirst();
+                    System.out.println((returnCursor.getString(nameIndex)));
+                    System.out.println((Long.toString(returnCursor.getLong(sizeIndex))));
+
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
                 }
@@ -99,6 +117,14 @@ public class InGameActivity extends AppCompatActivity {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
+        System.out.println(getContentResolver().getType(contentUri));
+        Cursor returnCursor =
+                getContentResolver().query(contentUri, null, null, null, null);
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+        returnCursor.moveToFirst();
+        System.out.println((returnCursor.getString(nameIndex)));
+        System.out.println((Long.toString(returnCursor.getLong(sizeIndex))));
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
     }
