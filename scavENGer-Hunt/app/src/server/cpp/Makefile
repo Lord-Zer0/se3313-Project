@@ -1,11 +1,20 @@
-Server : Server.o thread.o socket.o socketserver.o Blockable.o
-	g++ -o Server Server.o thread.o socket.o socketserver.o Blockable.o -pthread -l rt
+
+
+httpserver : httpserver.o thread.o socket.o socketserver.o Blockable.o
+	g++ -o httpserver httpserver.o thread.o socket.o socketserver.o Blockable.o -pthread -l rt
+
+
+ServerReference : ServerReference.o thread.o socket.o socketserver.o Blockable.o
+	g++ -o ServerReference ServerReference.o thread.o socket.o socketserver.o Blockable.o -pthread -l rt
 
 Blockable.o : Blockable.h Blockable.cpp
 	g++ -c Blockable.cpp -std=c++11
 
-Server.o : Server.cpp thread.h socketserver.h
-	g++ -c Server.cpp -std=c++11
+httpserver.o : httpserver.cpp thread.h socketserver.h
+	g++ -c httpserver.cpp -std=c++11
+
+ServerReference.o : ServerReference.cpp thread.h socketserver.h
+	g++ -c ServerReference.cpp -std=c++11
 
 thread.o : thread.cpp thread.h
 	g++ -c thread.cpp -std=c++11
