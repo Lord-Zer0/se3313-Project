@@ -9,14 +9,15 @@
 #include "SharedObject.h"
 
 using namespace Sync;
+
 class SharedBool {
 public:
     bool run;
 };
 
 
-void threadProcedure(Socket conn) {
 
+void threadProcedure(Socket conn) {
     //read sent message from client
     ByteArray recievedMsg;
     conn.Read(recievedMsg);
@@ -73,8 +74,7 @@ void serverThread() {
     }
 }
 
-int main(void)
-{
+int main(void) {
     std::cout << "I am a server." << std::endl;
 
     //get reference to shared memory
@@ -94,6 +94,5 @@ int main(void)
     //set shared bool to false and join threads
     sharedMem->run = false;
     mainThread.join();
-
 
 }
