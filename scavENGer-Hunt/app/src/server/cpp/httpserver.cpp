@@ -12,6 +12,7 @@
 #include <sstream>
 
 using namespace Sync;
+
 class SharedBool {
 public:
     bool run;
@@ -37,10 +38,14 @@ void makeGame(Socket conn) {
 
 }
 
+<<<<<<< HEAD
 void threadProcedure(Socket conn) {
     //get reference to shared memory
     Shared<SharedBool> sharedMem("run");
+=======
+>>>>>>> backend-dev
 
+void threadProcedure(Socket conn) {
     //read sent message from client
     ByteArray receivedMsg;
     conn.Read(receivedMsg);
@@ -188,8 +193,7 @@ void serverThread() {
     }
 }
 
-int main(void)
-{
+int main(void) {
     std::cout << "I am a server." << std::endl;
 
     //get reference to shared memory
@@ -208,6 +212,5 @@ int main(void)
     //set shared bool to false and join threads
     sharedMem->run = false;
     mainThread.join();
-
 
 }
