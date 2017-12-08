@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,9 +25,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImages;
+import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOptions;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -42,6 +48,8 @@ public class InGameActivity extends AppCompatActivity {
 
     private ImageView mImageView;
 
+    VisualRecognition watty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,11 +59,10 @@ public class InGameActivity extends AppCompatActivity {
         wordView = findViewById(R.id.wordText);
         btnCamera = findViewById(R.id.btnCamera);
         mImageView = findViewById(R.id.mImageView);
-        //VisualRecognition service = new VisualRecognition(
-         //       VisualRecognition.VERSION_DATE_2016_05_20
-       // );
-        //service.setApiKey("{api-key}");
-      //  btnCamera.setOnClickListener(onClickListener);
+        watty = new VisualRecognition(
+                VisualRecognition.VERSION_DATE_2016_05_20
+        );
+        watty.setApiKey("0d1c6b7800efff5a855e45c0638cfaa778d186ca");
     }
 //    private View.OnClickListener onClickListener = new View.OnClickListener() {
         @RequiresApi(api = Build.VERSION_CODES.M)
@@ -113,46 +120,65 @@ public class InGameActivity extends AppCompatActivity {
         return image;
     }
 
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        System.out.println(getContentResolver().getType(contentUri));
-        Cursor returnCursor =
-                getContentResolver().query(contentUri, null, null, null, null);
-        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-        int sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
-        returnCursor.moveToFirst();
-        System.out.println((returnCursor.getString(nameIndex)));
-        System.out.println((Long.toString(returnCursor.getLong(sizeIndex))));
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+
+    //This happens after they take a picture.
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        //if the picture is a thing, start watson AsyncTask.
+        if (mCurrentPhotoPath != null) {
+            RetrieveClassificationTask wattyTask = (RetrieveClassificationTask) new RetrieveClassificationTask().execute("Because I had to.");
+        }
     }
 
-    private void setPic() {
-        // Get the dimensions of the View
-        int targetW = mImageView.getWidth();
-        int targetH = mImageView.getHeight();
+    //this does a thing and then ships it to IBM. It returns what Watty boy thinks it is.
+    class RetrieveClassificationTask extends AsyncTask<String, Void, ClassifiedImages> {
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+        private Exception exception;
 
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+        protected ClassifiedImages doInBackground(String...urls) {
+            try {
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
 
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+                // Determine how much to scale down the image
+                int scaleFactor = 2;
 
-        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        mImageView.setImageBitmap(bitmap);
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+                bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inPurgeable = true;
+
+                Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+
+                //get rid of that garb because aint nobody got space for dat
+                mCurrentPhotoPath = null;
+
+                //compress it to yummy bites for watty
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 0 /*ignored for PNG*/, bos);
+                byte[] bitmapdata = bos.toByteArray();
+                ByteArrayInputStream bs = new ByteArrayInputStream(bitmapdata);
+
+                ClassifyOptions classifyOptions = new ClassifyOptions.Builder()
+                        .imagesFile(bs)
+                        .imagesFilename("scavengerhunt.png")
+                        .build();
+
+                //ship it to watty
+                return watty.classify(classifyOptions).execute();
+            } catch (Exception e) {
+                this.exception = e;
+
+                return null;
+            }
+        }
+
+        protected void onPostExecute(ClassifiedImages result) {
+            //lets see what he says the picture was of ;)
+            System.out.println(result);
+
+        }
     }
-
-
-
 }
