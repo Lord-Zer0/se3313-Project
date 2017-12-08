@@ -21,6 +21,19 @@ public:
 };
 
 void ongoingGameThread(Socket conn) {
+    
+    
+    
+}
+
+// std::string makeJSON(std::string id, std::string status, std::string word){
+//     std::string json = "{ \"ID\": \"" << id << 
+//     "\", \"Status\": \"" << status <<  
+//     "\", \"CurrentWord\": \"" << word << "\" }";
+//     return json;
+// }
+
+void makeGame(Socket conn) {
 
 }
 
@@ -130,7 +143,8 @@ void threadProcedure(Socket conn) {
 
                     lineVector.push_back(value);
                 }
-
+                
+                //status code WAITING
                 if (lineVector[1] == "WAITING") {
 
                     //send game info
@@ -143,6 +157,8 @@ void threadProcedure(Socket conn) {
                     conn.Close();
                     break;
                 }
+                //if no games in waiting state, create a new one
+                makeGame(conn);
             }
             myfile.close();
 
