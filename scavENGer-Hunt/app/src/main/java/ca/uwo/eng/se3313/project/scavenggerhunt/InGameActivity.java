@@ -217,7 +217,7 @@ public class InGameActivity extends AppCompatActivity {
             if (exiting) { //If you can exit a currently running game
                 if (ID != null) { //If the game exits
                     if (!ID.equals("")) { //If the game exists and has been given a proper ID
-                       while(score<winAmount+1 && !ID.equals("0")) {
+                       while(score<winAmount+(winAmount-1) && !ID.equals("0")) {
                            RequestTask requestTask = new RequestTask();
                            requestTask.execute("GET /wongame/" + ID); //End the game on server side
                            score++;
