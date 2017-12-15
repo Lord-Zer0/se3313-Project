@@ -8,6 +8,10 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     //Creating a home page and a page to exit the android app to in order to not connect to a game.
 
+    public MainActivity() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,4 +22,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, InGameActivity.class);
         startActivity(intent);
     }
+
+    //Initialize Visual Recognition client
+    VisualRecognition service=new VisualRecognition(
+            VisualRecognition.VERSION_DATE_2016_05_20,
+            getString(R.string.api_key)
+
+    );
+
+
+
+
+
+
+
+
+
 }
