@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">scavENGger Hunt</string>,
-    <string name="api_key">0d1c6b7800efff5a855e45c0638cfaa778d186ca</string>
-
-
+    <string name="app_name">scavENGger Hunt</string>
+    <string name="title_activity_in_game">InGameActivity</string>
 </resources>
